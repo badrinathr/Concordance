@@ -22,7 +22,7 @@ public class StreamProcessing {
 
     private void processStreams() {
         try (
-                LineNumberReader lr = new LineNumberReader(new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("file2.txt"))))
+                LineNumberReader lr = new LineNumberReader(new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("file.txt"))))
         ) {
             Map<String, List<Long>> wordCounts =
                     lr.lines()
