@@ -1,10 +1,8 @@
 package StreamOptions;
 
 
-import com.sun.org.apache.bcel.internal.classfile.LineNumber;
-import com.sun.org.apache.bcel.internal.util.SecuritySupport;
-
-import java.io.*;
+import java.io.FileReader;
+import java.io.LineNumberReader;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,11 +15,11 @@ public class StreamProcessing {
 
 
     public static void main(String[] args) {
-        String fileName = "./src/main/resources/file.txt" ;
-        if ( args.length > 1) {
+        String fileName = "./src/main/resources/file.txt";
+        if (args.length > 1) {
             System.err.println("Please input a single file name with fully qualified path ... " + args.length + " values entered ");
             System.exit(-1);
-        }else if ( args.length == 1) {
+        } else if (args.length == 1) {
             fileName = args[0];
         }
         StreamProcessing str = new StreamProcessing();
@@ -47,7 +45,7 @@ public class StreamProcessing {
     }
 
     private Map<String, List<Long>> retrieveWordCountMap(LineNumberReader lr) {
-            return
+        return
                 lr.lines()
                         .flatMap(x -> Stream.of(x.split("\\W+")))
                         .map(x -> new WordAndLine(x.toLowerCase(), lr.getLineNumber()))
@@ -57,7 +55,6 @@ public class StreamProcessing {
                                                 WordAndLine::line,
                                                 toList())), TreeMap::new));
     }
-
 
 
     public class WordAndLine {
